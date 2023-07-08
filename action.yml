@@ -1,0 +1,16 @@
+name: 'Replace Tokens'
+description: 'Replaces substrings in files.'
+author: Abhinav Minhas
+branding:
+  icon: 'edit'
+  color: 'black'
+inputs:
+  files:
+    description: 'file names (path included), comma-separated for multiple files.'
+    required: true
+  replacements:
+    description: 'Replacements, comma-separated pairs (PLACEHOLDER=value)'
+    required: true
+runs:
+  using: 'node16'
+  main: 'index.js'
