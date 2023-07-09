@@ -113,7 +113,7 @@ describe('REPLACE TOKENS TESTS', () => {
         expect(data.includes(secret)).to.be.equals(true)
     })
 
-    it('Test 7: Use a different separator than the default comma.', async () => {
+    it('Test 7: Use a different separator/delimiter than the default comma.', async () => {
         const key = '54c213d6-ac7f-44cb-8ac2-91e6a175af3d'
         const secret = '323acd81-6a1f-4eb8-bc6c-22a7711ab8ba'
         const files = "./test/test-files/multiple_files_mutiple_tokens/file1.json|./test/test-files/multiple_files_mutiple_tokens/file2.csv|"
