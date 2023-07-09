@@ -34,7 +34,7 @@ jobs:
           npm run build --if-present
           npm run coverage
 
-    - name: Upload coverage reports to Codecov
+    - name: Upload Coverage Reports To Codecov
       uses: codecov/codecov-action@v3
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
