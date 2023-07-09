@@ -6,7 +6,8 @@ const replace = require('./src/replace')
 try {
   const files = core.getInput('files')
   const replacements = core.getInput('replacements')
-  await replace.replaceTokens(files, replacements)
+  const delimiter = core.getInput('delimiter')
+  await replace.replaceTokens(files, replacements, delimiter)
 } catch (error) {
   setFailed(error.message)
 }

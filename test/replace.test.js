@@ -113,6 +113,38 @@ describe('REPLACE TOKENS TESTS', () => {
         expect(data.includes(secret)).to.be.equals(true)
     })
 
+    it('Test 7: Use a different separator than the default comma.', async () => {
+        const key = '54c213d6-ac7f-44cb-8ac2-91e6a175af3d'
+        const secret = '323acd81-6a1f-4eb8-bc6c-22a7711ab8ba'
+        const files = "./test/test-files/multiple_files_mutiple_tokens/file1.json|./test/test-files/multiple_files_mutiple_tokens/file2.csv|"
+                    + "./test/test-files/multiple_files_mutiple_tokens/file3.yml|./test/test-files/multiple_files_mutiple_tokens/file4.txt"
+        await replace.replaceTokens(files, `_KEY_=${key}|_SECRET_=${secret}`, '|')
+        let data = fs.readFileSync('./test/test-files/multiple_files_mutiple_tokens/file1.json', 'utf8')
+        expect(data).to.not.be.equals(undefined)
+        expect(data.includes('_KEY_')).to.be.equals(false)
+        expect(data.includes(key)).to.be.equals(true)
+        expect(data.includes('_SECRET_')).to.be.equals(false)
+        expect(data.includes(secret)).to.be.equals(true)
+        data = fs.readFileSync('./test/test-files/multiple_files_mutiple_tokens/file2.csv', 'utf8')
+        expect(data).to.not.be.equals(undefined)
+        expect(data.includes('_KEY_')).to.be.equals(false)
+        expect(data.includes(key)).to.be.equals(true)
+        expect(data.includes('_SECRET_')).to.be.equals(false)
+        expect(data.includes(secret)).to.be.equals(true)
+        data = fs.readFileSync('./test/test-files/multiple_files_mutiple_tokens/file3.yml', 'utf8')
+        expect(data).to.not.be.equals(undefined)
+        expect(data.includes('_KEY_')).to.be.equals(false)
+        expect(data.includes(key)).to.be.equals(true)
+        expect(data.includes('_SECRET_')).to.be.equals(false)
+        expect(data.includes(secret)).to.be.equals(true)
+        data = fs.readFileSync('./test/test-files/multiple_files_mutiple_tokens/file4.txt', 'utf8')
+        expect(data).to.not.be.equals(undefined)
+        expect(data.includes('_KEY_')).to.be.equals(false)
+        expect(data.includes(key)).to.be.equals(true)
+        expect(data.includes('_SECRET_')).to.be.equals(false)
+        expect(data.includes(secret)).to.be.equals(true)
+    })
+
 })
 
 after(async () => {

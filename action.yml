@@ -9,8 +9,12 @@ inputs:
     description: 'file names (path included), comma-separated for multiple files.'
     required: true
   replacements:
-    description: 'Replacements, comma-separated pairs (PLACEHOLDER=value)'
+    description: 'Replacements, comma-separated pairs (PLACEHOLDER=value).'
     required: true
+  delimiter:
+    description: 'Defines separator/delimiter to be used, default is comma.'
+    required: false
+    default: ','
 runs:
   using: 'node16'
   main: 'index.js'
