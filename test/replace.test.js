@@ -7,26 +7,125 @@ const fs = require('fs')
 
 before(async () => {
     let content = 'Hi,\r\n\r\nHow are you ?'
-    fs.writeFileSync('./test/test-files/file_replace_single.txt', content)
+    fs.writeFileSync('./test/test-files/single_file_replace_single_token.txt', content)
     content = 'Hi,\r\n\r\nHow are you ??'
-    fs.writeFileSync('./test/test-files/file_replace_multiple.txt', content)
+    fs.writeFileSync('./test/test-files/single_file_replace_multiple_similar_tokens.txt', content)
+    content = 'Hi,\r\n\r\nHow are you ?'
+    fs.writeFileSync('./test/test-files/single_file_replace_multiple_different_tokens.txt', content)
+    content = '{"name":"file1","key":"_KEY_"}'
+    fs.writeFileSync('./test/test-files/multiple_files_single_token/file1.json', content)
+    content = "name,key\r\nfile2,_KEY_"
+    fs.writeFileSync('./test/test-files/multiple_files_single_token/file2.csv', content)
+    content = 'name: file3\r\n  key: _KEY_'
+    fs.writeFileSync('./test/test-files/multiple_files_single_token/file3.yml', content)
+    content = 'name=file4\r\nkey=_KEY_'
+    fs.writeFileSync('./test/test-files/multiple_files_single_token/file4.txt', content)
+    content = '{"name":"file1","key":"_KEY_", "secret": "_SECRET_"}'
+    fs.writeFileSync('./test/test-files/multiple_files_mutiple_tokens/file1.json', content)
+    content = 'name,key,secret\r\nfile2,_KEY_,_SECRET_'
+    fs.writeFileSync('./test/test-files/multiple_files_mutiple_tokens/file2.csv', content)
+    content = 'name: file3\r\n  key: _KEY_\r\n  secret: _SECRET_'
+    fs.writeFileSync('./test/test-files/multiple_files_mutiple_tokens/file3.yml', content)
+    content = 'name=file4\r\nkey=_KEY_\r\nsecret=_SECRET_'
+    fs.writeFileSync('./test/test-files/multiple_files_mutiple_tokens/file4.txt', content)
 })                                                                      
 
 describe('REPLACE TOKENS TESTS', () => {
 
-    it('Test 1: Replace a token in the text file.', async () => {
-        await replace.replaceTokens('./test/test-files/file_replace_single.txt', "?=.")
-        const data = fs.readFileSync('./test/test-files/file_replace_single.txt', 'utf8')
+    it('Test 1: Replace a token in a file.', async () => {
+        await replace.replaceTokens('./test/test-files/single_file_replace_single_token.txt', "?=.")
+        const data = fs.readFileSync('./test/test-files/single_file_replace_single_token.txt', 'utf8')
         expect(data).to.not.be.equals(undefined)
         expect(data.includes('?')).to.be.equals(false)
         expect(data.includes('.')).to.be.equals(true)
     })
     
-    it('Test 1: Replace similar multiple tokens in the text file.', async () => {
-        await replace.replaceTokens('./test/test-files/file_replace_multiple.txt', "?=.,?=.")
-        const data = fs.readFileSync('./test/test-files/file_replace_multiple.txt', 'utf8')
+    it('Test 2: Replace similar multiple tokens in a file.', async () => {
+        await replace.replaceTokens('./test/test-files/single_file_replace_multiple_similar_tokens.txt', "?=.,?=.")
+        const data = fs.readFileSync('./test/test-files/single_file_replace_multiple_similar_tokens.txt', 'utf8')
         expect(data).to.not.be.equals(undefined)
         expect(data.includes('?')).to.be.equals(false)
-        expect(data.includes('.')).to.be.equals(true)
+        expect(data.includes('..')).to.be.equals(true)
     })
+
+    it('Test 3: Replace different multiple tokens in a file.', async () => {
+        await replace.replaceTokens('./test/test-files/single_file_replace_multiple_different_tokens.txt', "Hi=Hello,?=....")
+        const data = fs.readFileSync('./test/test-files/single_file_replace_multiple_different_tokens.txt', 'utf8')
+        expect(data).to.not.be.equals(undefined)
+        expect(data.includes('Hi')).to.be.equals(false)
+        expect(data.includes('Hello')).to.be.equals(true)
+        expect(data.includes('?')).to.be.equals(false)
+        expect(data.includes('....')).to.be.equals(true)
+    })
+
+    it('Test 4: Replace single token in multiple files.', async () => {
+        const key = '54c213d6-ac7f-44cb-8ac2-91e6a175af3d'
+        const files = "./test/test-files/multiple_files_single_token/file1.json, ./test/test-files/multiple_files_single_token/file2.csv, "
+                    + "./test/test-files/multiple_files_single_token/file3.yml, ./test/test-files/multiple_files_single_token/file4.txt"
+        await replace.replaceTokens(files, `_KEY_=${key}`)
+        let data = fs.readFileSync('./test/test-files/multiple_files_single_token/file1.json', 'utf8')
+        expect(data).to.not.be.equals(undefined)
+        expect(data.includes('_KEY_')).to.be.equals(false)
+        expect(data.includes(key)).to.be.equals(true)
+        data = fs.readFileSync('./test/test-files/multiple_files_single_token/file2.csv', 'utf8')
+        expect(data).to.not.be.equals(undefined)
+        expect(data.includes('_KEY_')).to.be.equals(false)
+        expect(data.includes(key)).to.be.equals(true)
+        data = fs.readFileSync('./test/test-files/multiple_files_single_token/file3.yml', 'utf8')
+        expect(data).to.not.be.equals(undefined)
+        expect(data.includes('_KEY_')).to.be.equals(false)
+        expect(data.includes(key)).to.be.equals(true)
+        data = fs.readFileSync('./test/test-files/multiple_files_single_token/file4.txt', 'utf8')
+        expect(data).to.not.be.equals(undefined)
+        expect(data.includes('_KEY_')).to.be.equals(false)
+        expect(data.includes(key)).to.be.equals(true)
+    })
+
+    it('Test 5: Replace multiple token in multiple files.', async () => {
+        const key = '54c213d6-ac7f-44cb-8ac2-91e6a175af3d'
+        const secret = '323acd81-6a1f-4eb8-bc6c-22a7711ab8ba'
+        const files = "./test/test-files/multiple_files_mutiple_tokens/file1.json, ./test/test-files/multiple_files_mutiple_tokens/file2.csv, "
+                    + "./test/test-files/multiple_files_mutiple_tokens/file3.yml, ./test/test-files/multiple_files_mutiple_tokens/file4.txt"
+        await replace.replaceTokens(files, `_KEY_=${key},_SECRET_=${secret}`)
+        let data = fs.readFileSync('./test/test-files/multiple_files_mutiple_tokens/file1.json', 'utf8')
+        expect(data).to.not.be.equals(undefined)
+        expect(data.includes('_KEY_')).to.be.equals(false)
+        expect(data.includes(key)).to.be.equals(true)
+        expect(data.includes('_SECRET_')).to.be.equals(false)
+        expect(data.includes(secret)).to.be.equals(true)
+        data = fs.readFileSync('./test/test-files/multiple_files_mutiple_tokens/file2.csv', 'utf8')
+        expect(data).to.not.be.equals(undefined)
+        expect(data.includes('_KEY_')).to.be.equals(false)
+        expect(data.includes(key)).to.be.equals(true)
+        expect(data.includes('_SECRET_')).to.be.equals(false)
+        expect(data.includes(secret)).to.be.equals(true)
+        data = fs.readFileSync('./test/test-files/multiple_files_mutiple_tokens/file3.yml', 'utf8')
+        expect(data).to.not.be.equals(undefined)
+        expect(data.includes('_KEY_')).to.be.equals(false)
+        expect(data.includes(key)).to.be.equals(true)
+        expect(data.includes('_SECRET_')).to.be.equals(false)
+        expect(data.includes(secret)).to.be.equals(true)
+        data = fs.readFileSync('./test/test-files/multiple_files_mutiple_tokens/file4.txt', 'utf8')
+        expect(data).to.not.be.equals(undefined)
+        expect(data.includes('_KEY_')).to.be.equals(false)
+        expect(data.includes(key)).to.be.equals(true)
+        expect(data.includes('_SECRET_')).to.be.equals(false)
+        expect(data.includes(secret)).to.be.equals(true)
+    })
+
+})
+
+after(async () => {
+    let content = ''
+    fs.writeFileSync('./test/test-files/single_file_replace_single_token.txt', content)
+    fs.writeFileSync('./test/test-files/single_file_replace_multiple_similar_tokens.txt', content)
+    fs.writeFileSync('./test/test-files/single_file_replace_multiple_different_tokens.txt', content)
+    fs.writeFileSync('./test/test-files/multiple_files_single_token/file1.json', content)
+    fs.writeFileSync('./test/test-files/multiple_files_single_token/file2.csv', content)
+    fs.writeFileSync('./test/test-files/multiple_files_single_token/file3.yml', content)
+    fs.writeFileSync('./test/test-files/multiple_files_single_token/file4.txt', content)
+    fs.writeFileSync('./test/test-files/multiple_files_mutiple_tokens/file1.json', content)
+    fs.writeFileSync('./test/test-files/multiple_files_mutiple_tokens/file2.csv', content)
+    fs.writeFileSync('./test/test-files/multiple_files_mutiple_tokens/file3.yml', content)
+    fs.writeFileSync('./test/test-files/multiple_files_mutiple_tokens/file4.txt', content)
 })

@@ -3,10 +3,10 @@
 const fs = require('fs')
 
 async function replaceTokens (files, replacements) {
-    const fileNames = files.replace(' ', '').split(',')
-    const replacementValues = replacements.replace(' ', '').split(',')
+    const fileNames = files.replace(/\s/g, '').split(',')
+    const replacementValues = replacements.replace(/\s/g, '').split(',')
     console.log(`Total Files: ${fileNames.length}`)
-    for(let file = 1; file <= fileNames.length; file++) {
+    for (let file = 1; file <= fileNames.length; file++) {
       let fileName = fileNames[file - 1]
       console.log(`File ${file}: ${fileName}`)
       fs.readFile(fileName, 'utf8', function (err, data) {
