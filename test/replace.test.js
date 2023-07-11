@@ -113,7 +113,7 @@ describe('REPLACE TOKENS TESTS', () => {
         expect(data.includes(secret)).to.be.equals(true)
     })
 
-    it('Test 7: Use a different separator/delimiter than the default comma.', async () => {
+    it('Test 6: Use a different separator/delimiter than the default comma.', async () => {
         const key = '54c213d6-ac7f-44cb-8ac2-91e6a175af3d'
         const secret = '323acd81-6a1f-4eb8-bc6c-22a7711ab8ba'
         const files = "./test/test-files/multiple_files_mutiple_tokens/file1.json|./test/test-files/multiple_files_mutiple_tokens/file2.csv|"
@@ -143,6 +143,30 @@ describe('REPLACE TOKENS TESTS', () => {
         expect(data.includes(key)).to.be.equals(true)
         expect(data.includes('_SECRET_')).to.be.equals(false)
         expect(data.includes(secret)).to.be.equals(true)
+    })
+
+    it('Test 7: Replace token, separator is null.', async () => {
+        await replace.replaceTokens('./test/test-files/single_file_replace_single_token.txt', "?=.", null)
+        const data = fs.readFileSync('./test/test-files/single_file_replace_single_token.txt', 'utf8')
+        expect(data).to.not.be.equals(undefined)
+        expect(data.includes('?')).to.be.equals(false)
+        expect(data.includes('.')).to.be.equals(true)
+    })
+
+    it('Test 8: Replace token, separator is undefined.', async () => {
+        await replace.replaceTokens('./test/test-files/single_file_replace_single_token.txt', "?=.", undefined)
+        const data = fs.readFileSync('./test/test-files/single_file_replace_single_token.txt', 'utf8')
+        expect(data).to.not.be.equals(undefined)
+        expect(data.includes('?')).to.be.equals(false)
+        expect(data.includes('.')).to.be.equals(true)
+    })
+
+    it('Test 9: Replace token, separator is blank.', async () => {
+        await replace.replaceTokens('./test/test-files/single_file_replace_single_token.txt', "?=.", '')
+        const data = fs.readFileSync('./test/test-files/single_file_replace_single_token.txt', 'utf8')
+        expect(data).to.not.be.equals(undefined)
+        expect(data.includes('?')).to.be.equals(false)
+        expect(data.includes('.')).to.be.equals(true)
     })
 
 })
