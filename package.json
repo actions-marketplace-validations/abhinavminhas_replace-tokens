@@ -1,9 +1,10 @@
 {
   "name": "replace-tokens",
-  "version": "1.0.0",
+  "version": "v1.0",
   "description": "Replace tokens in the code files with variables values during the execution of the CI/CD process.",
   "main": "index.js",
   "scripts": {
+    "cleanUp": "true",
     "test": "mocha",
     "coverage": "nyc --reporter=lcov npm test && codecov"
   },
@@ -29,3 +30,4 @@
     "nyc": "^15.1.0"
   }
 }
+

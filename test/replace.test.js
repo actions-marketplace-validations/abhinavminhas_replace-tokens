@@ -172,16 +172,19 @@ describe('REPLACE TOKENS TESTS', () => {
 })
 
 after(async () => {
-    let content = ''
-    fs.writeFileSync('./test/test-files/single_file_replace_single_token.txt', content)
-    fs.writeFileSync('./test/test-files/single_file_replace_multiple_similar_tokens.txt', content)
-    fs.writeFileSync('./test/test-files/single_file_replace_multiple_different_tokens.txt', content)
-    fs.writeFileSync('./test/test-files/multiple_files_single_token/file1.json', content)
-    fs.writeFileSync('./test/test-files/multiple_files_single_token/file2.csv', content)
-    fs.writeFileSync('./test/test-files/multiple_files_single_token/file3.yml', content)
-    fs.writeFileSync('./test/test-files/multiple_files_single_token/file4.txt', content)
-    fs.writeFileSync('./test/test-files/multiple_files_mutiple_tokens/file1.json', content)
-    fs.writeFileSync('./test/test-files/multiple_files_mutiple_tokens/file2.csv', content)
-    fs.writeFileSync('./test/test-files/multiple_files_mutiple_tokens/file3.yml', content)
-    fs.writeFileSync('./test/test-files/multiple_files_mutiple_tokens/file4.txt', content)
+    const cleanUp = JSON.parse(fs.readFileSync('package.json', 'utf-8')).scripts.cleanUp
+    if (cleanUp === 'true') {
+        let content = ''
+        fs.writeFileSync('./test/test-files/single_file_replace_single_token.txt', content)
+        fs.writeFileSync('./test/test-files/single_file_replace_multiple_similar_tokens.txt', content)
+        fs.writeFileSync('./test/test-files/single_file_replace_multiple_different_tokens.txt', content)
+        fs.writeFileSync('./test/test-files/multiple_files_single_token/file1.json', content)
+        fs.writeFileSync('./test/test-files/multiple_files_single_token/file2.csv', content)
+        fs.writeFileSync('./test/test-files/multiple_files_single_token/file3.yml', content)
+        fs.writeFileSync('./test/test-files/multiple_files_single_token/file4.txt', content)
+        fs.writeFileSync('./test/test-files/multiple_files_mutiple_tokens/file1.json', content)
+        fs.writeFileSync('./test/test-files/multiple_files_mutiple_tokens/file2.csv', content)
+        fs.writeFileSync('./test/test-files/multiple_files_mutiple_tokens/file3.yml', content)
+        fs.writeFileSync('./test/test-files/multiple_files_mutiple_tokens/file4.txt', content)
+    }
 })
