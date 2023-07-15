@@ -1,18 +1,18 @@
 name: 'Replace Tokens'
-description: 'Replaces substrings in files.'
+description: 'Replace tokens in the text or code files with variables values during the execution of the CI/CD process.'
 author: Abhinav Minhas
 branding:
   icon: 'edit'
   color: 'black'
 inputs:
   files:
-    description: 'file names (path included), comma-separated for multiple files.'
+    description: 'File names (path included), comma-separated for multiple files.'
     required: true
   replacements:
     description: 'Replacements, comma-separated pairs (PLACEHOLDER=value).'
     required: true
   delimiter:
-    description: 'Defines separator/delimiter to be used, default is comma.'
+    description: 'Defines separator/delimiter to be used, default value is comma.'
     required: false
     default: ','
 runs:
