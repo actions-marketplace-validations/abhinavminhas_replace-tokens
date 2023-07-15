@@ -1,4 +1,4 @@
-name: 'Replace Tokens'
+name: 'Replace Tokens (abhinavminhas)'
 description: 'Replace tokens in the text or code files with variables values during the execution of the CI/CD process.'
 author: Abhinav Minhas
 branding:
@@ -9,7 +9,7 @@ inputs:
     description: 'File names (path included), comma-separated for multiple files.'
     required: true
   replacements:
-    description: 'Replacements, comma-separated pairs (PLACEHOLDER=value).'
+    description: 'Replacements, comma-separated pairs (TOKENS=value).'
     required: true
   delimiter:
     description: 'Defines separator/delimiter to be used, default value is comma.'

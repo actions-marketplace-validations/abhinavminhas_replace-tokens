@@ -4,7 +4,7 @@
 [![codecov](https://codecov.io/github/abhinavminhas/replace-tokens/branch/main/graph/badge.svg?token=VP3CAOQCVB)](https://codecov.io/github/abhinavminhas/replace-tokens)
 ![maintainer](https://img.shields.io/badge/Creator/Maintainer-abhinavminhas-e65c00)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![GitHub Release](https://img.shields.io/github/v/release/abhinavminhas/replace-tokensr?label=Github%20Release)](https://github.com/abhinavminhas/replace-tokens/releases)
+[![GitHub Release](https://img.shields.io/github/v/release/abhinavminhas/replace-tokens?label=Github%20Release)](https://github.com/abhinavminhas/replace-tokens/releases)
 
 ## Inputs
 
