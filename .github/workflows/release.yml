@@ -4,7 +4,7 @@ env:
     RELEASE_NAME: "v1.0"
     RELEASE_NOTES: |
       - Github replace tokens action.
-    DRAFT: true
+    DRAFT: false
     PRERELEASE: false
     
 on:
@@ -36,5 +36,5 @@ jobs:
         body: ${{ env.RELEASE_NOTES }}
         draft: ${{ env.DRAFT }}
         prerelease: ${{ env.PRERELEASE }}
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.PAT_REPLACE_TOKENS }}
         
