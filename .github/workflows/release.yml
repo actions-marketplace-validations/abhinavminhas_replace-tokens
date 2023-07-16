@@ -27,8 +27,7 @@ jobs:
     - run: |
           npm ci
           npm test
-    
-    
+
     - name: Upload Release
       uses: ncipollo/release-action@v1
       with:
@@ -36,5 +35,6 @@ jobs:
         body: ${{ env.RELEASE_NOTES }}
         draft: ${{ env.DRAFT }}
         prerelease: ${{ env.PRERELEASE }}
+        artifacts: node_modules/*
         token: ${{ secrets.PAT_REPLACE_TOKENS }}
         
