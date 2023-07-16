@@ -9,12 +9,12 @@
 ## Inputs
 
 - `files` **(Required)** - File names (path included), comma-separated for multiple files.  
-   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&ensp;Example: ``` file1, file2 ```
+   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&ensp;**Example:** ``` file1, file2 ```
 - `replacements` **(Required)** - Token (to be replaced) & value comma-separated pairs (TOKEN=value).  
-   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;Example: ``` key1=value1, key2=value2 ```  
+   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;**Example:** ``` key1=value1, key2=value2 ```  
    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;**Note:** _Values can be variables/secrets._
 - `delimiter` **(Optional)** - Defines separator/delimiter to be used, default value is comma (``` , ```).  
-   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&nbsp;Example: ``` | ``` or ``` ; ``` or ``` : ``` or ``` - ``` etc.
+   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&nbsp;**Example:** ``` | ``` or ``` ; ``` or ``` : ``` or ``` - ``` etc.
 
 ## Usage
 
