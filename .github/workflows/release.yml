@@ -3,7 +3,7 @@ name: Release
 env:
     RELEASE_NAME: "v1.0"
     RELEASE_NOTES: |
-      - Github replace tokens action.
+      - Github replace tokens action. (Initial Release)
     DRAFT: false
     PRERELEASE: false
     
