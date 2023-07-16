@@ -1,7 +1,7 @@
 {
   "name": "replace-tokens",
   "version": "v1.0",
-  "description": "Replace tokens in the code files with variables values during the execution of the CI/CD process.",
+  "description": "Replaces tokens in the text or code files with replacement values during the execution of the CI/CD process.",
   "main": "index.js",
   "scripts": {
     "cleanUp": "true",
