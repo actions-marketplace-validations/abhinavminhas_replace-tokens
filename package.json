@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "cleanUp": "true",
+    "build": "ncc build index.js",
     "test": "mocha",
     "coverage": "nyc --reporter=lcov npm test && codecov"
   },
@@ -24,10 +25,10 @@
     "@actions/github": "^5.1.1"
   },
   "devDependencies": {
+    "@vercel/ncc": "^0.36.1",
     "chai": "^4.3.7",
     "codecov": "^3.8.3",
     "mocha": "^10.2.0",
     "nyc": "^15.1.0"
   }
 }
-

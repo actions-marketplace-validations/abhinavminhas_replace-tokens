@@ -26,6 +26,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: |
           npm ci
+          npm run build --if-present
           npm test
 
     - name: Upload Release
@@ -35,6 +36,5 @@ jobs:
         body: ${{ env.RELEASE_NOTES }}
         draft: ${{ env.DRAFT }}
         prerelease: ${{ env.PRERELEASE }}
-        artifacts: node_modules/*
         token: ${{ secrets.PAT_REPLACE_TOKENS }}
         
