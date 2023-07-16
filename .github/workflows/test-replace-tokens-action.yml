@@ -18,7 +18,7 @@ jobs:
         files: package.json
         replacements: true=false
     
-    - name: Build & Test
+    - name: Install (Clean), Build & Test
       run: |
           npm ci
           npm run build --if-present

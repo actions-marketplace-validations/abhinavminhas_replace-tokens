@@ -19,11 +19,15 @@ jobs:
         node-version: [ 16.x ]
 
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
+    
+    - name: Install (Clean), Build & Test
     - run: |
           npm ci
           npm run build --if-present
@@ -36,5 +40,4 @@ jobs:
         body: ${{ env.RELEASE_NOTES }}
         draft: ${{ env.DRAFT }}
         prerelease: ${{ env.PRERELEASE }}
-        token: ${{ secrets.PAT_REPLACE_TOKENS }}
-        
+        token: ${{ secrets.PAT_REPLACE_TOKENS }}   
