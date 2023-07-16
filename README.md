@@ -9,8 +9,7 @@
 ## Inputs
 
 - `files` **(Required)** - File names (path included), comma-separated for multiple files. Example: ``` file1, File2 ```
-- `replacements` **(Required)** - Token (to be replaced) & value comma-separated pairs (TOKEN=value). Example: ``` key1=value1, key2=value2 ```  
-    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; **Note:** _Values can be variables/secrets._
+- `replacements` **(Required)** - Token (to be replaced) & value comma-separated pairs (TOKEN=value). Example: ``` key1=value1, key2=value2 ``` **Note:** _Values can be variables/secrets._
 - `delimiter` **(Optional)** - Defines separator/delimiter to be used, default value is comma (``` , ```). Example: ``` | ``` or ``` ; ``` or ``` : ``` or ``` - ``` etc.
 
 ## Usage
@@ -47,7 +46,7 @@
      replacements: key1=value1, key2=value2
   ```
 
-- **Example 5:** _Use a different separator than comma (,). Important use case is when the token to be replaced is itself a comma or contains a comma._
+- **Example 5:** _Use a different separator than comma (``` , ```). Important use case is when the token to be replaced is itself a comma or contains a comma._
   ```
   name: Replace Tokens
   uses: abhinavminhas/replace-tokens
